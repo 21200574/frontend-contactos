@@ -163,7 +163,7 @@ async function guardarCambios(e) {
                 id_contacto: parseInt(idContacto),
                 tipo_dato: "Correo",
                 valor: correo,
-                es_principal: !principal
+                es_principal: false
             });
 
         console.log("Respuesta actualizar correo:", respuestaCorreo);
