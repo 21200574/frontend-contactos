@@ -129,8 +129,6 @@ async function guardarCambios(e) {
 
     try {
 
-        alert("Intentando actualizar...");
-
         const idContacto = document.getElementById("txtIdEditar").value;
 
         const contacto = {
@@ -144,8 +142,6 @@ async function guardarCambios(e) {
         const telefono = document.getElementById("txtTelefonoEditar").value;
         const correo = document.getElementById("txtCorreoEditar").value;
         const principal = document.getElementById("txtPrincipalEditar").checked;
-
-        console.log("Contacto a actualizar:", contacto);
 
         const respuestaContacto =
             await actualizarContacto(contacto);
@@ -184,7 +180,7 @@ async function guardarCambios(e) {
 
         console.error("Error al actualizar:", error);
 
-        alert("Ocurrió un error al actualizar. Revisa la consola.");
+        alert("Ocurrió un error al actualizar.");
 
     }
 
