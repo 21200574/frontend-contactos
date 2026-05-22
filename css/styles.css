@@ -1,0 +1,53 @@
+body {
+    background-color: #f4f7fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.card {
+    border-radius: 20px;
+}
+
+.table tbody tr:hover {
+    transition: 0.2s;
+    transform: scale(1.01);
+}
+
+.btn {
+    border-radius: 10px;
+}
+
+footer {
+    margin-top: auto;
+}body {
+    background-color: #f4f7fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.card {
+    border-radius: 20px;
+}
+
+.table tbody tr:hover {
+    transition: 0.2s;
+    transform: scale(1.01);
+}
+
+.btn {
+    border-radius: 10px;
+}
+
+footer {
+    margin-top: auto;
+}

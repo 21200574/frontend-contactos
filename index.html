@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Gestión de Contactos
+    </title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico">
+
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="css/styles.css">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+
+        <div class="container">
+
+            <a
+                class="navbar-brand fw-bold"
+                href="#">
+
+                <i class="bi bi-person-lines-fill"></i>
+
+                Contactos App
+
+            </a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarContenido">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div
+                class="collapse navbar-collapse"
+                id="navbarContenido">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link active"
+                            href="#">
+
+                            Inicio
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="#">
+
+                            Acerca de
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- CONTENIDO -->
+    <main class="container mt-5">
+
+        <!-- TÍTULO -->
+        <div
+            class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+
+                <h1 class="fw-bold">
+                    Gestión de Contactos
+                </h1>
+
+                <p class="text-muted">
+                    Administración de contactos usando API REST
+                </p>
+
+            </div>
+
+            <!-- BOTÓN NUEVO -->
+            <button
+                class="btn btn-primary btn-lg shadow-sm"
+                id="btnNuevo"
+                data-bs-toggle="modal"
+                data-bs-target="#modalContacto">
+
+                <i class="bi bi-plus-circle"></i>
+
+                Nuevo Contacto
+
+            </button>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="card shadow border-0 rounded-4">
+
+            <div class="card-body">
+
+                <div class="table-responsive">
+
+                    <!-- TABLA -->
+                    <table
+                        class="table table-hover align-middle"
+                        id="tablaContactos">
+
+                        <thead class="table-primary">
+
+                            <thead class="table-primary">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Categoría</th>
+        <th>Teléfono</th>
+        <th>Correo</th>
+        <th>Principal</th>
+        <th class="text-center">Acciones</th>
+    </tr>
+
+
+                        </thead>
+
+                        <tbody id="contenidoTabla">
+
+                            <!-- DATOS DINÁMICOS -->
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- MODAL -->
+    <div
+        class="modal fade"
+        id="modalContacto"
+        tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content border-0 rounded-4">
+
+                <!-- HEADER -->
+                <div class="modal-header bg-primary text-white">
+
+                    <h5 class="modal-title">
+
+                        <i class="bi bi-person-plus"></i>
+
+                        Nuevo Contacto
+
+                    </h5>
+
+                    <button
+                        type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+                <!-- BODY -->
+                <div class="modal-body">
+
+                    <form id="formContacto">
+
+                        <!-- NOMBRE -->
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Nombre
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="txtNombre"
+                                required>
+
+                        </div>
+
+                        <!-- APELLIDO -->
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Apellido
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="txtApellido"
+                                required>
+
+                        </div>
+
+                        <!-- FECHA -->
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Fecha de Nacimiento
+                            </label>
+
+                            <input
+                                type="date"
+                                class="form-control"
+                                id="txtFechaNacimiento"
+                                required>
+
+                        </div>
+
+                        <!-- CATEGORÍA -->
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Categoría
+                            </label>
+
+                            <select
+                                class="form-select"
+                                id="txtCategoria">
+
+                                <option value="1">
+                                    Familia
+                                </option>
+
+                                <option value="2">
+                                    Trabajo
+                                </option>
+
+                                <option value="3">
+                                    Escuela
+                                </option>
+
+                                <option value="4">
+                                    Amigos
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <!-- TELÉFONO -->
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Teléfono
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="txtTelefono">
+
+                        </div>
+
+                        <!-- CORREO -->
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Correo
+                            </label>
+
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="txtCorreo">
+
+                        </div>
+
+                        <!-- BOTÓN -->
+                        <div class="d-grid">
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary btn-lg">
+
+                                <i class="bi bi-save"></i>
+
+                                Guardar Contacto
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+
+        <div class="container">
+
+            <p class="mb-1 fw-bold">
+                Desarrollado por Leonardo Alvarez
+            </p>
+
+            <p class="mb-0">
+                Programación Web - 2026
+            </p>
+
+        </div>
+
+        <!-- MODAL ELIMINAR -->
+<div class="modal fade" id="modalEliminar" tabindex="-1">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content border-0 rounded-4">
+
+            <div class="modal-header bg-danger text-white">
+
+                <h5 class="modal-title">
+                    <i class="bi bi-trash"></i>
+                    Confirmar eliminación
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body text-center">
+
+                <p class="fs-5">
+                    ¿Seguro que deseas eliminar este contacto?
+                </p>
+
+                <input type="hidden" id="txtIdEliminar">
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+                    Cancelar
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-danger"
+                    id="btnConfirmarEliminar">
+                    <i class="bi bi-trash"></i>
+                    Eliminar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- MODAL EDITAR -->
+<div class="modal fade" id="modalEditar" tabindex="-1">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content border-0 rounded-4">
+
+            <div class="modal-header bg-warning">
+
+                <h5 class="modal-title">
+
+                    <i class="bi bi-pencil-square"></i>
+
+                    Editar Contacto
+
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <form id="formEditar">
+
+                    <input
+                        type="hidden"
+                        id="txtIdEditar">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Nombre
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="txtNombreEditar">
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Apellido
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="txtApellidoEditar">
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Fecha Nacimiento
+                        </label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            id="txtFechaEditar">
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Categoría
+                        </label>
+
+                        <div class="mb-3">
+    <label class="form-label">Teléfono</label>
+    <input type="text" class="form-control" id="txtTelefonoEditar">
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Correo</label>
+    <input type="email" class="form-control" id="txtCorreoEditar">
+</div>
+
+<div class="form-check mb-3">
+    <input class="form-check-input" type="checkbox" id="txtPrincipalEditar">
+    <label class="form-check-label">
+        Marcar como principal
+    </label>
+</div>
+                        <select
+                            class="form-select"
+                            id="txtCategoriaEditar">
+
+                            <option value="1">
+                                Familia
+                            </option>
+
+                            <option value="2">
+                                Trabajo
+                            </option>
+
+                            <option value="3">
+                                Escuela
+                            </option>
+
+                            <option value="4">
+                                Amigos
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="d-grid">
+
+                        <button
+                            type="submit"
+                            class="btn btn-warning">
+
+                            Actualizar
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    <!-- JS -->
+    <script
+        type="module"
+        src="js/app.js">
+    </script>
+
+</body>
+
+</html>
